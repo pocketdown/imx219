@@ -1,2 +1,2 @@
 # imx219
-auto shutter speed
+Auto shutter speed
