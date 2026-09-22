@@ -12,20 +12,12 @@ shutter = str(1000)
 
 while True:
 
-    time = datetime.now()
-    years = int(time.year)
-    months = int(time.month)
-    days = int(time.day)
-    hours = int(time.hour)
-    minutes = int(time.minute)
-    seconds = int(time.second)
-
-    dir = "/home/pi/test/" + str(years) + str(months).zfill(2) + str(days).zfill(2) + "/"
+    dir = "/home/pi/test/" + datetime.now().strftime("%Y%m%d") + "/"
     subprocess.run(["mkdir", "-p", dir], stderr=subprocess.DEVNULL)
 
-    filename = dir + str(years) + str(months).zfill(2) + str(days).zfill(2) + "-" + str(hours).zfill(2) + str(minutes).zfill(2) + str(seconds).zfill(2) + "-" + gain + "-" + shutter + "-" + avg_brightness + ".jpg"
+    filename = dir + datetime.now().strftime("%Y%m%d") + "-" + gain + "-" + shutter + "-" + avg_brightness + ".jpg"
     #print("file name: " + filename)
-    subprocess.run(["rpicam-still", "-v", "0", "-o", filename, "-t", "5", "--gain", gain, "--shutter", shutter, "--width", width, "--height", height, "--framerate", "1", "--awb", "auto", "--metering", "spot", "--tuning-file", "/usr/share/libcamera/ipa/rpi/vc4/imx219_noir.json"], stderr=subprocess.DEVNULL)
+    subprocess.run(["rpicam-still", "-v", "0", "-o", filename, "-t", "5", "--gain", gain, "--shutter", shutter, "--width", width, "--height", height, "--framerate", "1", "--awb", "auto", "--metering", "spot", "--tuning-file", "/usr/share/libcamera/ipa/rpi/vc4/imx219_noir.json"])
 
     files = glob(dir + str(years) + str(months).zfill(2) + str(days).zfill(2) + "-" + str(hours).zfill(2) + str(minutes).zfill(2) + "*.jpg")
     latest = max(files, key=os.path.getmtime)
