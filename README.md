@@ -1,3 +1,4 @@
 # imx219
-Raspberry Pi Camera Module 2 NoIR
-Auto shutter speed
+Auto shutter speed 
+of Raspberry Pi Camera Module 2 NoIR
+
