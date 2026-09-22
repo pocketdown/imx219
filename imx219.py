@@ -23,7 +23,7 @@ while True:
     dir = "/home/pi/test/" + str(years) + str(months).zfill(2) + str(days).zfill(2) + "/"
     subprocess.run(["mkdir", "-p", dir], stderr=subprocess.DEVNULL)
 
-    filename = dir + str(years) + str(months).zfill(2) + str(days).zfill(2) + "-" + str(hours).zfill(2) + str(minutes).zfill(2) + str(seconds).zfill(2) + "-" + gain + "-" + shutter + "-" + str(avg_brightness) + ".jpg"
+    filename = dir + str(years) + str(months).zfill(2) + str(days).zfill(2) + "-" + str(hours).zfill(2) + str(minutes).zfill(2) + str(seconds).zfill(2) + "-" + gain + "-" + shutter + "-" + avg_brightness + ".jpg"
     #print("file name: " + filename)
     subprocess.run(["rpicam-still", "-v", "0", "-o", filename, "-t", "5", "--gain", gain, "--shutter", shutter, "--width", width, "--height", height, "--framerate", "1", "--awb", "auto", "--metering", "spot", "--tuning-file", "/usr/share/libcamera/ipa/rpi/vc4/imx219_noir.json"], stderr=subprocess.DEVNULL)
 
